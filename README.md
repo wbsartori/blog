@@ -2,7 +2,7 @@
 
 <hr>
 <ul>
-    <li><a href="getStarted">Get started</a></li>
+    <li><a href="#getStarted">Get started</a></li>
     <li><a href="#">Installation</a></li>
     <li><a href="#">Technologies</a></li>    
     <li><a href="#">Resourses</a></li>
