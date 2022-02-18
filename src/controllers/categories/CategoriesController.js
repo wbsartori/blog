@@ -5,7 +5,9 @@ const slugify = require('slugify');
 const Category = require('../../models/categories/Category');
 
 router.get('/categories', (req, res) => {
-    res.render('categories/index')    
+    Category.findAll().then(categories => {
+        res.render('categories/index', {categories : categories})    
+    })
 });
 
 router.get('/admin/categories/new', (req, res) => {

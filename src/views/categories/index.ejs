@@ -3,7 +3,45 @@
 <body>
 <%- include('../components/navbar.ejs'); %>
 
-<h1>Pagina de Categorias</h1>
+
+<div class="container">
+
+<hr>
+
+<div class="d-flex justify-content-end">
+    <a href="/admin/categories/new" class="btn btn-primary">Novo</a>
+</div>
+
+<hr class="bg-dark">
+
+    <div class="row mt-5">
+        <table class="table table-striped">
+            <thead>
+            <tr>
+                <th scope="col">Id</th>
+                <th scope="col">Categoria</th>                                      
+                <th scope="col">Slug</th>    
+                <th scope="col">Ações</th>                    
+            </tr>
+            </thead>
+            <tbody>           
+                <% categories.forEach(category => { %>
+                    <tr>
+                        <td><%= category.id %></td>
+                        <td><%= category.title %></td>
+                        <td><%= category.slug %></td>
+                        <td>
+                            <a href="#" class="btn btn-warning" ><i class="bi bi-pencil-square"></i></a>                            
+                            <a href="#" class="btn btn-danger" ><i class="bi bi-trash-fill"></i></a>
+
+                        </td>
+                    </tr>
+                <% }); %>
+            </tbody>
+        </table>
+    </div>
+</div>
+
 </body>
 
 <%- include('../partials/footer.ejs'); %>

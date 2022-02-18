@@ -2,8 +2,8 @@ const Sequelize = require('sequelize');
 
 const connection = new Sequelize(
     'blog',
-    'root',
-    '', {
+    'admin',
+    'admin', {
         dialect: 'mysql'
 });
 
