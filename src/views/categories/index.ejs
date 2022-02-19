@@ -5,7 +5,15 @@
 
 
 <div class="container">
-
+    <% if(message.length > 0) { %>
+        <div class="alert alert-success mt-1">
+            <%- message %>
+        </div>
+    <%} else if(error_message.length > 0) { %>
+        <div class="alert alert-danger mt-1">
+            <%- message %>
+        </div>
+    <% } %>
 <hr>
 
 <div class="d-flex justify-content-end">
@@ -30,9 +38,39 @@
                         <td><%= category.id %></td>
                         <td><%= category.title %></td>
                         <td><%= category.slug %></td>
-                        <td>
-                            <a href="#" class="btn btn-warning" ><i class="bi bi-pencil-square"></i></a>                            
-                            <a href="#" class="btn btn-danger" ><i class="bi bi-trash-fill"></i></a>
+                        <td>                    
+                                <a href="/admin/categories/edit/<%= category.id %>" class="btn btn-warning" ><i class="bi bi-pencil-square"></i></a>        
+                                
+                                <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#confimarDelete<%= category.id %>" >
+                                    <i class="bi bi-trash"></i>
+                                </button>                            
+                                
+                                <div class="modal fade" id="confimarDelete<%= category.id %>" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+                                    <div class="modal-dialog">
+                                        <div class="modal-content">
+                                            <div class="modal-header bg-danger">
+                                                <h5 class="modal-title text-light" id="staticBackdropLabel">Tem certeza que deseja excluir esse registro ?</h5>
+                                                <button type="button" class="btn-close text-light" data-bs-dismiss="modal" aria-label="Close"></button>
+                                            </div>
+                                            <div class="modal-body">                                                
+                                                <label for="id_cidade">Id:</label>
+                                                <input type="text" class="form-control" id="id" name="id" value="<%= category.id %>" disabled>
+                                                <hr>
+                                                <label for="id_cidade">Codigo IBGE:</label>
+                                                <input type="text" class="form-control" id="codigo_ibge" name="codigo_ibge" value="<%= category.title %>" disabled>
+                                                <hr>
+                                                <label for="id_cidade">Cidade:</label>
+                                                <input type="text" class="form-control" id="cidade" name="cidade" value="<%= category.slug %>" disabled>                                                
+                                            </div>
+                                            <div class="modal-footer">
+                                                <form action="/categories/delete" method="post">
+                                                    <input type="hidden" name="id" id="id" value="<%= category.id %>">
+                                                    <button type="submit" class="btn btn-danger">Confirmar</button>
+                                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                                                </form>
+                                            </div>
+                                        </div>
+                                    </div>                                        
 
                         </td>
                     </tr>

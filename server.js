@@ -3,6 +3,8 @@ const app = express();
 const bodyParser = require('body-parser');
 const path = require('path');
 const connection = require('./src/database/database');
+const session = require('express-session');
+const flash = require('connect-flash')
 
 const hostname = 'localhost';
 const port = 3000;
@@ -14,10 +16,18 @@ const Article = require('./src/models/articles/Article');
 const Category = require('./src/models/categories/Category');
 
 app.set('views', path.join(__dirname, 'src/views/'));
-
 app.set('view engine', 'ejs');
-
 app.use(express.static(path.join(__dirname, 'src/public')))
+app.use(session({
+    secret: 'secret',
+    cookie: {
+        maxAge: 60000
+    },
+    resave: false,
+    saveUninitialized: false
+}));
+
+app.use(flash());
 
 app.use(bodyParser.urlencoded({extended : false}));
 app.use(bodyParser.json());
