@@ -21,7 +21,10 @@
         </div>
         <div class="card-body">
             <form action="/admin/categories/save" method="post">
-                <input type="text" class="form-control" name="title" id="title" placeholder="Defina o titulo da categoria">
+                <div class="mb-3 row">
+                    <label for="title">Título</label>
+                    <input type="text" class="form-control" name="title" id="title" placeholder="Defina o titulo da categoria">
+                </div>
                 <button class="btn btn-success mt-3">Cadastrar</button>
                 <a href="/categories" class="btn btn-danger mt-3">Cancelar</a>
             </form>
