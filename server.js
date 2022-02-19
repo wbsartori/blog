@@ -4,7 +4,7 @@ const bodyParser = require('body-parser');
 const path = require('path');
 const connection = require('./src/database/database');
 const session = require('express-session');
-const flash = require('connect-flash')
+const flush = require('connect-flash')
 
 const hostname = 'localhost';
 const port = 3000;
@@ -20,14 +20,12 @@ app.set('view engine', 'ejs');
 app.use(express.static(path.join(__dirname, 'src/public')))
 app.use(session({
     secret: 'secret',
-    cookie: {
-        maxAge: 60000
-    },
+    cookie: { maxAge: 60000 },
     resave: false,
     saveUninitialized: false
 }));
 
-app.use(flash());
+app.use(flush());
 
 app.use(bodyParser.urlencoded({extended : false}));
 app.use(bodyParser.json());

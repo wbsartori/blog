@@ -1,8 +1,7 @@
-<%- include('../partials/header.ejs'); %>
+<%- include('../../partials/header.ejs'); %>
 
 <body>
-<%- include('../components/navbar.ejs'); %>
-
+<%- include('../../components/navbar.ejs'); %>
 
 <div class="container">
     <% if(message.length > 0) { %>
@@ -16,9 +15,15 @@
     <% } %>
 <hr>
 
-<div class="d-flex justify-content-end">
-    <a href="/admin/categories/new" class="btn btn-primary">Novo</a>
-</div>
+        <div class="row">
+            <div class="col-md-4 d-flex justify-content-start">
+                <h4 class="float-start">Categorias</h4>
+            </div>
+            <div class="col-md-4"></div>
+            <div class="col-md-4  d-flex justify-content-end">
+                <a href="/admin/categories/new" class="btn btn-primary">Novo</a>
+            </div>
+        </div>
 
 <hr class="bg-dark">
 
@@ -56,14 +61,14 @@
                                                 <label for="id_cidade">Id:</label>
                                                 <input type="text" class="form-control" id="id" name="id" value="<%= category.id %>" disabled>
                                                 <hr>
-                                                <label for="id_cidade">Codigo IBGE:</label>
+                                                <label for="id_cidade">Título:</label>
                                                 <input type="text" class="form-control" id="codigo_ibge" name="codigo_ibge" value="<%= category.title %>" disabled>
                                                 <hr>
-                                                <label for="id_cidade">Cidade:</label>
+                                                <label for="id_cidade">Url:</label>
                                                 <input type="text" class="form-control" id="cidade" name="cidade" value="<%= category.slug %>" disabled>                                                
                                             </div>
                                             <div class="modal-footer">
-                                                <form action="/categories/delete" method="post">
+                                                <form action="/admin/categories/delete" method="post">
                                                     <input type="hidden" name="id" id="id" value="<%= category.id %>">
                                                     <button type="submit" class="btn btn-danger">Confirmar</button>
                                                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
@@ -82,4 +87,4 @@
 
 </body>
 
-<%- include('../partials/footer.ejs'); %>
+<%- include('../../partials/footer.ejs'); %>

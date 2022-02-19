@@ -14,20 +14,20 @@
             <%- error_message %>
         </div>
     <% } %>
-    
+
     <div class="card mt-5">
         <div class="card-header text-light bg-dark">
             <h2>Atualizar categoria</h2>
         </div>
         <div class="card-body">
-            <form action="/admin/categories/update" method="post">
-                <input type="hidden" name="id" id="id" value="<%= category.id %>">
+            <form action="/admin/articles/update" method="post">
+                <input type="hidden" name="id" id="id" value="<%= article.id %>">
                 <div class="mb-3 row">
                     <label for="title">Título</label>
-                    <input type="text" class="form-control" name="title" id="title" value="<%= category.title%>">
+                    <input type="text" class="form-control" name="title" id="title" value="<%= article.title%>">
                 </div>
                 <button class="btn btn-success mt-3">Atualizar</button>
-                <a href="/categories" class="btn btn-danger mt-3">Cancelar</a>
+                <a href="/articles" class="btn btn-danger mt-3">Cancelar</a>
             </form>
         </div>
     </div>

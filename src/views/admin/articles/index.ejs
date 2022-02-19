@@ -1,0 +1,90 @@
+<%- include('../../partials/header.ejs'); %>
+
+<body>
+<%- include('../../components/navbar.ejs'); %>
+
+
+<div class="container">
+    <% if(message.length > 0) { %>
+        <div class="alert alert-success mt-1">
+            <%- message %>
+        </div>
+    <%} else if(error_message.length > 0) { %>
+        <div class="alert alert-danger mt-1">
+            <%- message %>
+        </div>
+    <% } %>
+    <hr>
+
+        <div class="row">
+            <div class="col-md-4 d-flex justify-content-start">
+                <h4 class="float-start">Artigos</h4>
+            </div>
+            <div class="col-md-4"></div>
+            <div class="col-md-4  d-flex justify-content-end">
+                <a href="/admin/articles/new" class="btn btn-primary">Novo</a>
+            </div>
+        </div>
+    <hr class="bg-dark">
+
+    <div class="row mt-5">
+        <table class="table table-striped">
+            <thead>
+            <tr>
+                <th scope="col">Id</th>
+                <th scope="col">Categoria</th>
+                <th scope="col">Slug</th>
+                <th scope="col">Ações</th>
+            </tr>
+            </thead>
+            <tbody>
+            <% articles.forEach(article => { %>
+                <tr>
+                    <td><%= article.id %></td>
+                    <td><%= article.title %></td>
+                    <td><%= article.slug %></td>
+                    <td>
+                        <a href="/admin/categories/edit/<%= article.id %>" class="btn btn-warning" ><i class="bi bi-pencil-square"></i></a>
+
+                        <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#confimarDelete<%= article.id %>" >
+                            <i class="bi bi-trash"></i>
+                        </button>
+
+                        <div class="modal fade" id="confimarDelete<%= article.id %>" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+                            <div class="modal-dialog">
+                                <div class="modal-content">
+                                    <div class="modal-header bg-danger">
+                                        <h5 class="modal-title text-light" id="staticBackdropLabel">Tem certeza que deseja excluir esse registro ?</h5>
+                                        <button type="button" class="btn-close text-light" data-bs-dismiss="modal" aria-label="Close"></button>
+                                    </div>
+                                    <div class="modal-body">
+                                        <label for="id_cidade">Id:</label>
+                                        <input type="text" class="form-control" id="id" name="id" value="<%= article.id %>" disabled>
+                                        <hr>
+                                        <label for="id_cidade">Título:</label>
+                                        <input type="text" class="form-control" id="codigo_ibge" name="codigo_ibge" value="<%= article.title %>" disabled>
+                                        <hr>
+                                        <label for="id_cidade">Url:</label>
+                                        <input type="text" class="form-control" id="cidade" name="cidade" value="<%= article.slug %>" disabled>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <form action="/admin/articles/delete" method="post">
+                                            <input type="hidden" name="id" id="id" value="<%= article.id %>">
+                                            <button type="submit" class="btn btn-danger">Confirmar</button>
+                                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+
+                    </td>
+                </tr>
+            <% }); %>
+            </tbody>
+        </table>
+    </div>
+</div>
+
+</body>
+
+<%- include('../../partials/footer.ejs'); %>
